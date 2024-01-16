@@ -1,8 +1,10 @@
 const express = require('express')
 const morgan = require('morgan')
-const {request} = require("express");
+const cors = require('cors')
 const app = express()
 
+app.use(express.static('dist'))
+app.use(cors())
 app.use(express.json())
 
 const logPost = (request, response, next) => {
