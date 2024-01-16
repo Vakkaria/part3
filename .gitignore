@@ -1,3 +1,4 @@
 /testHello/
 .gitignore
 .idea
+/phonebook-backend/node_modules/
