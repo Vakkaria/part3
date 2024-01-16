@@ -1,0 +1,19 @@
+DELETE http://localhost:3001/api/persons/2
+
+###
+
+GET http://localhost:3001/api/persons
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Jill Valentine",
+  "phone": "040-439-3246"
+}
+
+###
+
+POST http://localhost:3001/
