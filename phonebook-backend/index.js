@@ -26,6 +26,12 @@ const logPost = (request, response, next) => {
 
 app.use(logPost)
 
+app.get('/api/persons', (request, response) => {
+    Person.find({}).then(person => {
+        response.json(person)
+    })
+})
+
 app.post('/api/persons', (request, response) => {
     const body = request.body
 
@@ -42,12 +48,6 @@ app.post('/api/persons', (request, response) => {
 
     person.save().then(savedNote => {
         response.json(savedNote)
-    })
-})
-
-app.get('/api/persons', (request, response) => {
-    Person.find({}).then(person => {
-        response.json(person)
     })
 })
 
@@ -86,7 +86,7 @@ app.get('/info', (request, response) => {
     const dateOfRequest = new Date()
 
     response.send(`
-        <p>Phonebook has info for ${Person.length} people</p>
+        <p>Phonebook has info for ${Person.countDocuments({})} people</p>
         <p>${dateOfRequest}</p>
     `)
 })
