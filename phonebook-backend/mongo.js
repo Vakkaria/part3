@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-if (process.argv.length !== 3 && process.argv.length !== 5) {
+if (process.argv.length !== 2 && process.argv.length !== 4) {
     console.log('Should be 3 or 5 arguments')
     process.exit(1)
 }
