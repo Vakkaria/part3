@@ -2,3 +2,4 @@
 .idea
 /phonebook-backend/node_modules/
 /phonebook-frontend/node_modules/
+/phonebook-backend/.env
