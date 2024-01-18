@@ -8,7 +8,7 @@ import Notification from './components/Notification.jsx'
 const App = () => {
     const [persons, setPersons] = useState([])
     const [newName, setNewName] = useState('')
-    const [newPhone, setNewPhone] = useState('')
+    const [newNumber, setNewNumber] = useState('')
     const [findings, setFindings] = useState('')
     const [errorMessage, setErrorMessage] = useState(null)
     const [error, setError] = useState(false)
@@ -40,7 +40,7 @@ const App = () => {
         if (persons.map(person => person.name).includes(newName)) {
 
             const name = persons.find(p => p.name === newName)
-            const changedPerson = {...name, phone: newPhone}
+            const changedPerson = {...name, number: newNumber}
 
             if (confirm(`${name} is already added to phonebook, replace the old number with a new one?`)) {
                 personsServices
@@ -50,7 +50,7 @@ const App = () => {
                     })
             }
 
-            setNewPhone('')
+            setNewNumber('')
             setNewName('')
 
             return
@@ -58,7 +58,7 @@ const App = () => {
 
         const personObject = {
             name: newName,
-            phone: newPhone
+            number: newNumber
         }
 
         personsServices
@@ -67,14 +67,14 @@ const App = () => {
                 setPersons(persons.concat(newValue))
                 setError(false)
                 setErrorMessage(`Added ${newName}`)
-                setNewPhone('')
+                setNewNumber('')
                 setNewName('')
                 setTimeout(() => setErrorMessage(null), 2000)
             })
     }
 
     const handleNameChange = event => setNewName(event.target.value)
-    const handlePhoneChange = event => setNewPhone(event.target.value)
+    const handleNumberChange = event => setNewNumber(event.target.value)
     const handleFindingChange = event => setFindings(event.target.value)
 
     return (
@@ -83,8 +83,8 @@ const App = () => {
             <Notification message={errorMessage} error={error}/>
             <FilterForm findings={findings} handleFindingChange={handleFindingChange}/>
             <h3>add a new</h3>
-            <AddForm addPerson={addPerson} newPhone={newPhone} newName={newName}
-                     handlePhoneChange={handlePhoneChange} handleNameChange={handleNameChange}/>
+            <AddForm addPerson={addPerson} newNumber={newNumber} newName={newName}
+                     handleNumberChange={handleNumberChange} handleNameChange={handleNameChange}/>
             <h3>Numbers</h3>
             {persons.map(person =>
                 <DisplayPersons findings={findings} person={person}

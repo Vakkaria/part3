@@ -85,10 +85,12 @@ app.put('/api/persons/:id', (request, response, next) => {
 app.get('/info', (request, response) => {
     const dateOfRequest = new Date()
 
-    response.send(`
-        <p>Phonebook has info for ${Person.countDocuments({})} people</p>
-        <p>${dateOfRequest}</p>
-    `)
+    Person.countDocuments({}).then(personCount => {
+        response.send(`
+            <p>Phonebook has info for ${personCount} people</p>
+            <p>${dateOfRequest}</p>
+        `)
+    })
 })
 
 const unknownEndpoint = (request, response) => {
