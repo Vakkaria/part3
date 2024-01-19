@@ -2,16 +2,16 @@ DELETE http://localhost:3001/api/persons/2
 
 ###
 
-GET http://localhost:3001/apis
+GET http://localhost:3001/api/persons
 
 ###
 
-POST http://localhost:3001/api/persons
+POST http://localhost:3001/api/persons/
 Content-Type: application/json
 
 {
-  "name": "Claire Redfield",
-  "phone": "040-439-3246"
+  "name": "Claire",
+  "number": "431-2"
 }
 
 ###
