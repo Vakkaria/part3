@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 mongoose.set('strictQuery', false)
-const url=process.env.MONGODB_URL
+const url = process.env.MONGODB_URL
 console.log('connecting to', url)
 
 mongoose.connect(url)
@@ -22,7 +22,7 @@ const personSchema = new mongoose.Schema({
         type: String,
         minLength: 9,
         validate: {
-            validator: function(v) {
+            validator: function (v) {
                 console.log('Validating number:', v)
                 return /^\d{2,3}-\d+$/.test(v)
             },
