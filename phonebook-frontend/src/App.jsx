@@ -25,7 +25,12 @@ const App = () => {
         if (confirm(`Delete ${name}`)) {
             personsServices
                 .deleteData(id)
-                .then(() => setPersons(persons.filter(p => p.id !== id)))
+                .then(() => {
+                    setError(false)
+                    setErrorMessage(`Delete ${name}`)
+                    setTimeout(() => setErrorMessage(null), 2000)
+                    setPersons(persons.filter(p => p.id !== id))
+                })
                 .catch(() => {
                     setError(true)
                     setErrorMessage(`Information of ${name} has already been removed from server`)
@@ -47,6 +52,14 @@ const App = () => {
                     .update(name.id, changedPerson)
                     .then(returnedData => {
                         setPersons(persons.map(p => p.id !== name.id ? p : returnedData))
+                        setError(false)
+                        setErrorMessage(`${newName} has been updated`)
+                        setTimeout(() => setErrorMessage(null), 2000)
+                    })
+                    .catch(error => {
+                        setError(true)
+                        setErrorMessage(error.response.data.error)
+                        setTimeout(() => setErrorMessage(null), 2000)
                     })
             }
 
@@ -69,6 +82,11 @@ const App = () => {
                 setErrorMessage(`Added ${newName}`)
                 setNewNumber('')
                 setNewName('')
+                setTimeout(() => setErrorMessage(null), 2000)
+            })
+            .catch(error => {
+                setError(true)
+                setErrorMessage(error.response.data.error)
                 setTimeout(() => setErrorMessage(null), 2000)
             })
     }
